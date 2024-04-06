@@ -34,6 +34,7 @@ float incrementSpeed = 0.6f;
 float x = 0.0f, y = 0.0f, z = 0.0f;
 float ooz = 0.0f;
 float xp = 0.0f, yp = 0.0f;
+float horizontalSpacing = 20.0f;
 int idx;
 
 float calculateX(int i, int j, int k)
@@ -61,7 +62,7 @@ void calculateForSurface(float cubeX, float cubeY, float cubeZ, int ch)
 
     ooz = 1 / z;
 
-    xp = (int)(width / 2 + K1 * ooz * x * 2);
+    xp = (int)(width / 2 + horizontalSpacing + K1 * ooz * x * 2);
     yp = (int)(height / 2 + K1 * ooz * y);
 
     idx = xp + yp * width;
@@ -88,6 +89,11 @@ int main(void)
             for (float cubeY = -cubeWidth; cubeY < cubeWidth; cubeY += incrementSpeed)
             {
                 calculateForSurface(cubeX, cubeY, -cubeWidth, '#');
+                calculateForSurface(cubeWidth, cubeY, cubeX, '$');
+                calculateForSurface(-cubeWidth, cubeY, -cubeX, '~');
+                calculateForSurface(-cubeX, cubeY, cubeWidth, '&');
+                calculateForSurface(cubeX, -cubeWidth, -cubeY, '*');
+                calculateForSurface(cubeX, -cubeWidth, cubeY, '.');
             }
         }
 
@@ -97,8 +103,9 @@ int main(void)
             putchar(k % width ? buffer[k] : 10);
         }
 
-        A += 0.005;
-        B += 0.005;
+        A += 0.009;
+        B += 0.009;
+        C += 0.009;
         usleep(1000);
     }
 
