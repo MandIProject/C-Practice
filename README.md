@@ -1,1 +1,2 @@
-#Just Practicing C programming and saving my day to day progress
+# Practicing C 
+Just Practicing C programming and saving my day to day progress
